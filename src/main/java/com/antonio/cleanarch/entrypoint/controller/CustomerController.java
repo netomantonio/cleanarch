@@ -1,5 +1,6 @@
 package com.antonio.cleanarch.entrypoint.controller;
 
+import com.antonio.cleanarch.core.usecase.DeleteCustomerByIdUseCase;
 import com.antonio.cleanarch.core.usecase.FindCustomerByIdUseCase;
 import com.antonio.cleanarch.core.usecase.InsertCustomerUseCase;
 import com.antonio.cleanarch.core.usecase.UpdateCustomerUseCase;
@@ -28,6 +29,9 @@ public class CustomerController {
     @Autowired
     private UpdateCustomerUseCase updateCustomerUseCase;
 
+    @Autowired
+    private DeleteCustomerByIdUseCase deleteCustomerByIdUseCase;
+
     @PostMapping
     public ResponseEntity<Void> create(@Valid @RequestBody CustomerRequest customerRequest) {
 
@@ -54,5 +58,11 @@ public class CustomerController {
         customer.setId(id);
         updateCustomerUseCase.update(customer, customerRequest.getZipCode());
         return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable final String id) {
+        deleteCustomerByIdUseCase.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
