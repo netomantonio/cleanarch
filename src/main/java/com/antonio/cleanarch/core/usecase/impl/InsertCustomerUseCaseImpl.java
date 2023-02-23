@@ -4,9 +4,7 @@ import com.antonio.cleanarch.core.dataprovider.CreateCustomer;
 import com.antonio.cleanarch.core.dataprovider.FindAddressByZipCode;
 import com.antonio.cleanarch.core.domain.Customer;
 import com.antonio.cleanarch.core.usecase.InsertCustomerUseCase;
-import org.springframework.stereotype.Component;
 
-@Component
 public class InsertCustomerUseCaseImpl implements InsertCustomerUseCase {
 
     private final FindAddressByZipCode findAddressByZipCode;
